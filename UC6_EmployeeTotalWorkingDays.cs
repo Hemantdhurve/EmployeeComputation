@@ -8,14 +8,16 @@ class EmployeeWageSwitch
     public const int IS_PART_TIME = 1;
     public const int IS_FULL_TIME = 2;
     public const int Emp_Rate_Per_Hr = 20;
-    public const int Number_Of_Working_Days = 2;
+    public const int Number_Of_Working_Days = 20;
+    public const int Max_Hr_In_Month = 100;
 
     static void Main(string[] args)
     {
-        int empHrs = 0, empWage = 0, totalEmpWage=0;
+        int empHrs = 0, totalEmpHrs = 0, totalWorkingDays = 0;
+        while (totalEmpHrs <= Max_Hr_In_Month && totalWorkingDays < Number_Of_Working_Days)
 
-        for (int day = 1; day < Number_Of_Working_Days; day++)
         {
+            totalWorkingDays++;
             Random random = new Random();
 
             int empCheck = random.Next(0, 3);
@@ -31,10 +33,12 @@ class EmployeeWageSwitch
                     empHrs = 0;
                     break;
             }
-            empWage = empHrs * Emp_Rate_Per_Hr;
-            totalEmpWage += empWage;
-        Console.WriteLine("Emp Wage" + empWage);
+            totalEmpHrs += empHrs;
+            Console.WriteLine("Day#:" + totalWorkingDays + " Emp Hrs : " + empHrs);
+
+
         }
+        int totalEmpWage = totalEmpHrs * Emp_Rate_Per_Hr;
         Console.WriteLine("Total Emp Wage : " + totalEmpWage);
     }
 }
